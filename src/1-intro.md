@@ -1,6 +1,6 @@
 # Chapter 1. Introduction
 
-RAPx is a static Rust analysis platform with two objectives:
+RAPx is a static analysis platform for Rust programs with two objectives:
 
 * To serve as a companion to the Rust compiler in detecting semantic bugs related to unsafe code.
 * To provide ready-to-use program analysis features for tool developers.

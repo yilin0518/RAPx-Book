@@ -1,4 +1,4 @@
-# Summary
+# Catalog 
 
 - [Introduction](./1-intro.md)
 - [Installation Guide](./2-install.md)
@@ -6,10 +6,11 @@
 - [Preliminaries](./4-preliminary.md)
 - [Core Modules](./5-core.md)
   - [Alias Analysis](./5.1-alias.md)
-  - [API-dependency Graph](./5.2-api.md)
-  - [Control-flow Analysis](./5.3-control.md)
-  - [Data-flow Analysis](./5.4-data.md)
-  - [Heap-ownership Analysis](./5.5-heap.md)
+  - [API-Dependency Analysis](./5.2-api.md)
+  - [Call Graph Analysis](./5.3-callgraph.md)
+  - [Data-Flow Analysis](./5.4-dataflow.md)
+  - [Owned Heap Analysis](./5.5-ownedheap.md)
+  - [Range Analysis](./5.6-range.md)
 - [Advanced Applications](./6-application.md)
   - [Dangling Pointer Detection](./6.1-dangling.md)
   - [Memory Leakage Detection](./6.2-memleak.md)
@@ -17,3 +18,4 @@
   - [Unsafe Code Audit](./6.4-unsafe.md)
 - [Utilities](./7-utilities.md)
   - [Logging](./7.1-log.md)
+- [Case Study](./8-casestudy.md)

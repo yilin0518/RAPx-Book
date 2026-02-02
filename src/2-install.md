@@ -5,12 +5,12 @@
 * macOS (both x86_64 and aarch64 version)
 
 ## Preparation
-RAPx is based on Rust version nightly-2024-10-12. You can install this version using the following command.
+The latest RAPx is developped based on Rust version nightly-2024-08-05. You can install this version using the following command.
 ```shell
-rustup toolchain install nightly-2024-10-12 --profile minimal --component rustc-dev,rust-src,llvm-tools-preview
+rustup toolchain install nightly-2025-12-06 --profile minimal --component rustc-dev,rust-src,llvm-tools-preview
 ```
 
-If you have multiple Rust versions, please ensure the default version is set to nightly-2024-10-12.
+If you have multiple Rust versions, please ensure the default version is set to nightly-2025-12-06.
 ```
 rustup show
 ```
@@ -30,7 +30,7 @@ git clone https://github.com/Artisan-Lab/RAPx.git
 You can combine the previous two steps into a single command:
 
 ```shell
-cargo +nightly-2024-10-12 install rapx --git https://github.com/Artisan-Lab/RAPx.git
+cargo +nightly-2025-12-06 install rapx --git https://github.com/Artisan-Lab/RAPx.git
 ```
 
 For macOS users, you may encounter compilation errors related to Z3 headers and libraries. There are two solutions:
@@ -45,7 +45,7 @@ Alternatively, you can modify the [Cargo.toml](https://github.com/Artisan-Lab/RA
 
 ```
 [dependencies]
-z3 = {version="0.12.1", features = ["static-link-z3"]}
+z3 = {version="0.13.3", features = ["static-link-z3"]}
 ```
 
 After this step, you should be able to see the RAPx plugin for cargo.
@@ -56,43 +56,31 @@ cargo --list
 Execute the following command to run RAPx and print the help message:
 ```
 cargo rapx -help
-00:00:00|RAP|INFO|: 
 Usage:
     cargo rapx [rapx options] -- [cargo check options]
 
 RAPx Options:
 
-Use-After-Free/double free detection.
-    -F or -uaf       command: "cargo rapx -uaf"
+Application:
+    -F or -uaf      use-after-free/double free detection.
+    -M or -mleak    memory leakage detection.
+    -O or -opt      automatically detect code optimization chances.
+    -I or -infer    (under development) infer the safety properties required by unsafe APIs.
+    -V or -verify   (under development) verify if the safety requirements of unsafe API are satisfied.
 
-Memory leakage detection.
-    -M or -mleak     command: "cargo rapx -mleak"
-
-Debugging options:
-    -mir             print the MIR of each function
-
-General command: 
-    -H or -help:     show help information
-    -V or -version:  show the version of RAPx
+Analysis:
+    -alias          perform alias analysis (meet-over-paths)
+    -adg            generate API dependency graphs
+    -callgraph      generate callgraphs
+    -dataflow       (not supported yet) generate dataflow graphs
+    -heap           analyze if the type holds a piece of memory on heap
+    -audit          (under development) generate unsafe code audit units
 ...
 ```
 
 ### Uninstall
 ```
-cargo uninstall rap
-```
-
-## Usage
-
-To analyze system software without std (e.g., [Asterinas](https://github.com/asterinas/asterinas)), try the following command:
-```
-cargo rapx -F -- --target x86_64-unknown-none
-```
-
-
-To analyze the Rust standard library, try the following command:
-```
-cargo rapx -stdsp -- -Z build-std --target x86_64-unknown-linux-gnu
+cargo uninstall rapx
 ```
 
 
